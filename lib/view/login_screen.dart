@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:kamchaiyo/view/dashboar_screen.dart';
 import 'package:kamchaiyo/view/forgot_password_screen.dart';
 import 'package:kamchaiyo/view/signup_screen.dart';
@@ -37,8 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       } else {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Invalid email or password')),
+        showSnackBar(
+          context: context,
+          content: 'Invalid Email or Password',
+          color: Colors.red,
         );
       }
     }
