@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:lottie/lottie.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -10,13 +11,20 @@ class ForgotPasswordScreen extends StatelessWidget {
     final email = _emailController.text.trim();
     if (email.isEmpty ||
         !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$').hasMatch(email)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a valid email')),
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text('Please enter a valid email')),
+      // );
+      showSnackBar(
+        context: context,
+        content: 'Please Enter a Valid Email',
+        color: Colors.red,
       );
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Reset link sent to $email')));
+      showSnackBar(
+        context: context,
+        content: 'Reset Link Sent to $email',
+        color: Colors.green,
+      );
       Navigator.pop(context);
     }
   }

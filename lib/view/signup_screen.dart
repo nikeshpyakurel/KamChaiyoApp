@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -35,9 +36,11 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void _signup() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Signing up...')));
+      showSnackBar(
+        context: context,
+        content: 'Account Created Success',
+        color: Colors.green,
+      );
       Future.delayed(Duration(seconds: 3), () => {Navigator.pop(context)});
     }
   }
