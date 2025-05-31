@@ -31,14 +31,17 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Lottie.asset(
               'assets/animations/splash_screen.json',
-              width: 400,
-              height: 400,
+              width: 300,
+              height: 300,
               fit: BoxFit.contain,
             ),
+            const SizedBox(height: 24),
             const Text(
               'KamChaiyo',
               style: TextStyle(
+                fontFamily: 'Philosopher Bold',
                 fontSize: 28,
+                letterSpacing: 1.2,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
@@ -46,7 +49,12 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 8),
             const Text(
               'Portal for Recruiters & Job Seekers',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),
