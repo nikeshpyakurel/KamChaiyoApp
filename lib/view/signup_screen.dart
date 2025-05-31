@@ -35,15 +35,16 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _signup() {
-    if (_formKey.currentState!.validate()) {
-      showSnackBar(
-        context: context,
-        content: 'Account Created Success',
-        color: Colors.green,
-      );
-      Future.delayed(Duration(seconds: 3), () => {Navigator.pop(context)});
-    }
+  if (_formKey.currentState!.validate()) {
+    showSnackBar(
+      context: context,
+      content: 'Account Created Success',
+      color: Colors.green,
+    );
+    // ignore: use_build_context_synchronously
+    Future.delayed(Duration(seconds: 3), () => {Navigator.pop(context)});
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,13 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 16),
               const Text(
                 "Create Account",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                fontFamily: 'Philosopher Bold',
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
               const Text(
@@ -212,7 +219,12 @@ class _SignupScreenState extends State<SignupScreen> {
                   Expanded(child: Divider()),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text("Or sign up with"),
+                    child: Text("Or sign up with",style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Colors.grey,
+              ),),
                   ),
                   Expanded(child: Divider()),
                 ],
@@ -232,7 +244,11 @@ class _SignupScreenState extends State<SignupScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account? "),
+                  const Text("Already have an account? ",style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+              ),),
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
@@ -240,9 +256,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: const Text(
                       "Login",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 127, 152, 243),
-                        fontWeight: FontWeight.bold,
-                      ),
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+              ),
                     ),
                   ),
                 ],
