@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:kamchaiyo/view/cvs_view.dart';
+import 'package:kamchaiyo/view/home_view.dart';
+import 'package:kamchaiyo/view/job_view.dart';
+import 'package:kamchaiyo/view/profile_view.dart';
+import 'package:kamchaiyo/view/task_view.dart';
 
-class DashboarScreen extends StatefulWidget {
-  const DashboarScreen({super.key});
+class DashboardView extends StatefulWidget {
+  const DashboardView({super.key});
 
   @override
-  State<DashboarScreen> createState() => _DashboarScreenState();
+  State<DashboardView> createState() => _DashboardViewState();
 }
 
-class _DashboarScreenState extends State<DashboarScreen> {
+class _DashboardViewState extends State<DashboardView> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    const HomeView(),
+    const JobView(),
+    const CvsView(),
+    const TaskView(),
+    const ProfileView(),
+
+    
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Dashboard",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            letterSpacing: 1,
-            fontWeight: FontWeight.w600,
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        selectedItemColor: Color.fromARGB(255, 127, 152, 243),
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          setState(() => _currentIndex = index);
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Jobs'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'CVs'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.checklist),
+            label: 'Tasks',
           ),
-        ),
-        centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 127, 152, 243),
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset(
-              'assets/animations/dashboard_screen.json',
-              width: 220,
-              height: 220,
-              fit: BoxFit.contain,
-            ),
-            Text(
-              "Dashboard Coming Soon..",
-              style: TextStyle(
-                fontSize: 18,
-                letterSpacing: 1,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kamchaiyo/theme/my_theme.dart';
 import 'package:kamchaiyo/view/splash_Screen.dart';
 
 class App extends StatelessWidget {
@@ -6,6 +7,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: getApplicationTheme(),
+      home: const SplashScreen(),
+    );
   }
 }

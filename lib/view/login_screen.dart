@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const DashboarScreen()),
+          MaterialPageRoute(builder: (_) => const DashboardView()),
         );
       } else {
         if (!mounted) return;
@@ -66,12 +66,25 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 16),
               const Text(
                 "Welcome to KamChaiyo!",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                fontFamily: 'Philosopher Bold',
+                fontSize: 28,
+                letterSpacing: 1.2,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
+            textAlign: TextAlign.center,
+          ),
+              
               const SizedBox(height: 8),
               const Text(
                 "Login to continue",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Colors.grey,
+              ),
               ),
               const SizedBox(height: 24),
               Form(
@@ -137,7 +150,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                         },
-                        child: const Text("Forgot Password?"),
+                        child: const Text("Forgot Password?",   style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 14,
+                letterSpacing: 1.2
+            
+              ),),
                       ),
                     ),
                     const SizedBox(height: 16),

@@ -48,7 +48,12 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             const Text(
               "Enter your email and we’ll send you a reset link.",
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Colors.grey,
+              ),
             ),
             const SizedBox(height: 16),
             TextField(

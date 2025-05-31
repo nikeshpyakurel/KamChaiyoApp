@@ -61,10 +61,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: const Text(
                   'Skip',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 127, 152, 243),
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Color.fromARGB(255, 127, 152, 243),
+              ),
                 ),
               ),
             ),
@@ -117,7 +118,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 child: Text(
                   isLastPage ? "Get Started" : "Next",
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                letterSpacing: 1.2,
+                color: Colors.white
+              ),
                 ),
               ),
             ),
@@ -151,13 +157,22 @@ class OnboardingPage extends StatelessWidget {
           const SizedBox(height: 32),
           Text(
             title,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontFamily: 'Philosopher Bold',
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
           Text(
             subtitle,
-            style: const TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(
+                fontFamily: 'Nunito Regular',
+                fontSize: 16,
+                color: Colors.grey,
+              ),
             textAlign: TextAlign.center,
           ),
         ],
