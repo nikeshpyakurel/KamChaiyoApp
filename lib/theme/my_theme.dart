@@ -4,8 +4,8 @@ ThemeData getApplicationTheme() {
   return ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: Colors.white,
-    primaryColor: const Color(0xFF7F98F3),
-    fontFamily: 'Nunito Regular', // Default for body text
+    primaryColor: const Color.fromARGB(255, 127, 152, 243),
+    fontFamily: 'Nunito Regular',
 
     appBarTheme: const AppBarTheme(
       centerTitle: true,
