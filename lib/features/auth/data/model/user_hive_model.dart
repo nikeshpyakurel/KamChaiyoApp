@@ -2,7 +2,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kamchaiyo/app/constant/hive_table_constant.dart';
 import 'package:kamchaiyo/features/auth/domain/entity/user_entity.dart';
 
-part 'auth_hive_model.g.dart';
+part 'user_hive_model.g.dart';
 
 @HiveType(typeId: HiveTableConstant.userTypeId)
 

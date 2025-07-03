@@ -19,11 +19,11 @@ Map<String, dynamic> _$CompanyDtoToJson(CompanyDto instance) =>
     };
 
 OwnerDto _$OwnerDtoFromJson(Map<String, dynamic> json) => OwnerDto(
-  fullName: json['fullName'] as String,
-  email: json['email'] as String,
-);
+      fullName: json['fullName'] as String,
+      email: json['email'] as String,
+    );
 
 Map<String, dynamic> _$OwnerDtoToJson(OwnerDto instance) => <String, dynamic>{
-  'fullName': instance.fullName,
-  'email': instance.email,
-};
+      'fullName': instance.fullName,
+      'email': instance.email,
+    };
