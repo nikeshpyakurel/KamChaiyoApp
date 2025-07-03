@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (!mounted) return;
         showSnackBar(
           context: context,
-          content: 'Invalid Email or Password',
+          message: 'Invalid Email or Password',
           color: Colors.red,
         );
       }

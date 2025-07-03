@@ -31,7 +31,7 @@ class LoginView extends StatelessWidget {
               break;
           }
         } else if (state.error != null) {
-          showSnackBar(context: context, content: state.error!, color: ThemeConstant.errorColor);
+          showSnackBar(context: context, message: state.error!, color: ThemeConstant.errorColor);
         }
       },
       child: DefaultTabController(

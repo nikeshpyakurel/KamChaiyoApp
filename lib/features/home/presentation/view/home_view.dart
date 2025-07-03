@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Hello, ${user?.fullName.split(' ')[0] ?? 'User'}!', style: const TextStyle(fontFamily: 'Philosopher Bold', fontSize: 28)),
-              Text('You are logged in as a ${user?.role ?? 'user'}.'),            ],
+              Text('You are logged in as a job seeker.'),            ],
           ),
         ),
       ),

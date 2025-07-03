@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 showSnackBar({
   required BuildContext context,
-  required String content,
+  required String message,
   Color? color,
 }) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Text(content),
+      content: Text(message),
       backgroundColor: color ?? Colors.black,
       behavior: SnackBarBehavior.floating,
     ),

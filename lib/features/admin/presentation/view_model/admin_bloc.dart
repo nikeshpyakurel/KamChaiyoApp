@@ -38,7 +38,8 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
   }
 
   Future<void> _onAdminDataFetched(AdminDataFetched event, Emitter<AdminState> emit) async {
-    emit(state.copyWith(status: AdminStatus.loading));
+    emit(state.copyWith(status: AdminStatus.loading, clearError: true, clearMessage: true, clearTogglingId: true));
+
     final usersResult = await _getAllUsersUseCase(NoParams());
     final companiesResult = await _getAllCompaniesUseCase(NoParams());
     final settingsResult = await _getChatbotSettingsUseCase(NoParams());
@@ -60,25 +61,48 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
   }
 
   Future<void> _onCompanyVerificationToggled(CompanyVerificationToggled event, Emitter<AdminState> emit) async {
+   
+    emit(state.copyWith(togglingCompanyId: event.companyId, clearError: true, clearMessage: true));
+
     final result = await _toggleCompanyVerificationUseCase(event.companyId);
+    
     result.fold(
-      (failure) => emit(state.copyWith(status: AdminStatus.failure, error: failure.message, clearError: false)),
+      (failure) {
+        emit(state.copyWith(
+          status: AdminStatus.failure, 
+          error: failure.message, 
+          clearTogglingId: true
+        ));
+      },
       (updatedCompany) {
-        // Optimistically update the UI
         final updatedList = state.companies.map((company) {
           return company.id == updatedCompany.id ? updatedCompany : company;
         }).toList();
-        emit(state.copyWith(companies: updatedList, status: AdminStatus.success, clearError: true));
+
+        emit(state.copyWith(
+          companies: updatedList, 
+          status: AdminStatus.success, 
+          message: 'Verification status for "${updatedCompany.name}" updated.',
+          clearTogglingId: true,
+        ));
       },
     );
   }
   
   Future<void> _onChatbotSettingsUpdated(ChatbotSettingsUpdated event, Emitter<AdminState> emit) async {
-    emit(state.copyWith(status: AdminStatus.loading));
+    emit(state.copyWith(status: AdminStatus.loading, clearError: true, clearMessage: true));
+
     final result = await _updateChatbotSettingsUseCase(event.newPrompt);
+    
     result.fold(
         (failure) => emit(state.copyWith(status: AdminStatus.failure, error: failure.message)),
-        (settings) => emit(state.copyWith(status: AdminStatus.success, chatbotSettings: settings))
+        (settings) {
+          emit(state.copyWith(
+            status: AdminStatus.success, 
+            chatbotSettings: settings,
+            message: 'Chatbot settings saved successfully!',
+          ));
+        }
     );
   }
 }

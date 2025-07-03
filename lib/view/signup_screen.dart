@@ -38,10 +38,9 @@ class _SignupScreenState extends State<SignupScreen> {
   if (_formKey.currentState!.validate()) {
     showSnackBar(
       context: context,
-      content: 'Account Created Success',
+      message: 'Account Created Success',
       color: Colors.green,
     );
-    // ignore: use_build_context_synchronously
     Future.delayed(Duration(seconds: 3), () => {Navigator.pop(context)});
   }
 }

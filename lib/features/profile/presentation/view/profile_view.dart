@@ -51,9 +51,9 @@ class _ProfileViewState extends State<ProfileView> {
       body: BlocListener<AuthViewModel, AuthState>(
         listener: (context, state) {
           if (state.profileUpdateSuccess) {
-            showSnackBar(context: context, content: 'Profile updated successfully!', color: Colors.green);
+            showSnackBar(context: context, message: 'Profile updated successfully!', color: Colors.green);
           } else if (state.error != null) {
-            showSnackBar(context: context, content: state.error!, color: Colors.red);
+            showSnackBar(context: context, message: state.error!, color: Colors.red);
           }
         },
         child: SingleChildScrollView(
