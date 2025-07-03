@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kamchaiyo/core/common/snackbar/my_snackbar.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:kamchaiyo/features/auth/domain/use_case/update_profile_usecase.dart';
 import 'package:kamchaiyo/features/auth/presentation/view_model/auth_view_model.dart';
 
@@ -51,9 +51,9 @@ class _ProfileViewState extends State<ProfileView> {
       body: BlocListener<AuthViewModel, AuthState>(
         listener: (context, state) {
           if (state.profileUpdateSuccess) {
-            showSnackBar(context: context, message: 'Profile updated successfully!', color: Colors.green);
+            showSnackBar(context: context, content: 'Profile updated successfully!', color: Colors.green);
           } else if (state.error != null) {
-            showSnackBar(context: context, message: state.error!, color: Colors.red);
+            showSnackBar(context: context, content: state.error!, color: Colors.red);
           }
         },
         child: SingleChildScrollView(

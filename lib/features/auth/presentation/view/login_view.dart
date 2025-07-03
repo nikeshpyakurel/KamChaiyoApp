@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kamchaiyo/app/constant/theme_constant.dart';
-import 'package:kamchaiyo/core/common/snackbar/my_snackbar.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:kamchaiyo/features/admin/presentation/view/admin_dashboard_view.dart';
 import 'package:kamchaiyo/features/auth/presentation/view/register_view.dart';
 import 'package:kamchaiyo/features/auth/presentation/view_model/auth_view_model.dart';
@@ -31,7 +31,7 @@ class LoginView extends StatelessWidget {
               break;
           }
         } else if (state.error != null) {
-          showSnackBar(context: context, message: state.error!, color: ThemeConstant.errorColor);
+          showSnackBar(context: context, content: state.error!, color: ThemeConstant.errorColor);
         }
       },
       child: DefaultTabController(

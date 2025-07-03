@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kamchaiyo/core/common/snackbar/my_snackbar.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:kamchaiyo/features/admin/presentation/view_model/admin_bloc.dart';
 
 class ChatbotSettingsView extends StatefulWidget {
@@ -27,7 +27,7 @@ class _ChatbotSettingsViewState extends State<ChatbotSettingsView> {
           _promptController.text = state.chatbotSettings!.systemPrompt;
         }
         if (state.error != null) {
-          showSnackBar(context: context, message: state.error!, color: Colors.red);
+          showSnackBar(context: context, content: state.error!, color: Colors.red);
         }
       },
       builder: (context, state) {

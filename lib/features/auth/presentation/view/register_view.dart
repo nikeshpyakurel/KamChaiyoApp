@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kamchaiyo/core/common/snackbar/my_snackbar.dart';
+import 'package:kamchaiyo/common/snake_bar.dart';
 import 'package:kamchaiyo/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:lottie/lottie.dart';
 
@@ -43,10 +43,10 @@ class _RegisterViewState extends State<RegisterView> {
       body: BlocListener<AuthViewModel, AuthState>(
         listener: (context, state) {
           if (state.signupSuccess) {
-            showSnackBar(context: context, message: "Account created! Please login.", color: Colors.green);
+            showSnackBar(context: context, content: "Account created! Please login.", color: Colors.green);
             Navigator.pop(context);
           } else if (state.error != null) {
-            showSnackBar(context: context, message: state.error!, color: Colors.red);
+            showSnackBar(context: context, content: state.error!, color: Colors.red);
           }
         },
         child: SafeArea(
