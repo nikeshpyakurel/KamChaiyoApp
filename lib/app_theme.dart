@@ -24,6 +24,7 @@ class AppTheme {
           fontFamily: 'Philosopher Bold', 
           color: colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
+          fontSize: 18,
         ),
         iconTheme: IconThemeData(
           color: colorScheme.onPrimary, 

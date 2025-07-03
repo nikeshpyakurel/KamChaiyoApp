@@ -18,7 +18,7 @@ class _RegisterViewState extends State<RegisterView> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _hidePassword = true;
-  String _selectedRole = 'job_seeker';
+  String _selectedRole = 'student';
 
   @override
   void dispose() {
@@ -56,10 +56,12 @@ class _RegisterViewState extends State<RegisterView> {
               key: _formKey,
               child: Column(
                 children: [
+
+                  Lottie.asset('assets/animations/login_screen.json', height: 200),
                   const Text("I am a...", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
                   SegmentedButton<String>(
-                    segments: const [ButtonSegment<String>(value: 'job_seeker', label: Text('Job Seeker'), icon: Icon(Icons.person_search)), ButtonSegment<String>(value: 'recruiter', label: Text('Recruiter'), icon: Icon(Icons.business_center))],
+                    segments: const [ButtonSegment<String>(value: 'student', label: Text('Job Seeker'), icon: Icon(Icons.person_search)), ButtonSegment<String>(value: 'recruiter', label: Text('Recruiter'), icon: Icon(Icons.business_center))],
                     selected: {_selectedRole},
                     onSelectionChanged: (newSelection) => setState(() => _selectedRole = newSelection.first),
                   ),
