@@ -76,7 +76,6 @@ void main() {
     blocTest<AuthViewModel, AuthState>(
       'should emit [loading, failure] when LoginUseCase returns a failure',
       build: () {
-        // Arrange
         when(() => mockLoginUseCase(tLoginParams)).thenAnswer((_) async => Left(tServerFailure));
         return authViewModel;
       },
@@ -95,7 +94,6 @@ void main() {
     blocTest<AuthViewModel, AuthState>(
       'should emit [loading, success] when SignupUseCase is successful',
       build: () {
-        // Arrange
         when(() => mockSignupUseCase(tSignupParams)).thenAnswer((_) async => const Right(tUser));
         return authViewModel;
       },
@@ -112,7 +110,6 @@ void main() {
     blocTest<AuthViewModel, AuthState>(
       'should emit [loading, failure] when SignupUseCase returns a failure',
       build: () {
-        // Arrange
         when(() => mockSignupUseCase(tSignupParams)).thenAnswer((_) async => Left(tServerFailure));
         return authViewModel;
       },

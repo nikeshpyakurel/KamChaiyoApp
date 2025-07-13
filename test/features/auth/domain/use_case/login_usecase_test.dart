@@ -20,12 +20,10 @@ void main() {
   test(
     'should call login with correct email, password, and role',
     () async {
-      // Arrange
       when(
         () => repository.login(any(), any(), any()),
       ).thenAnswer((_) async => const Right(user));
 
-      // Act
       final result = await usecase(
         const LoginParams(email: 'nikesh@gmail.com', password: 'nikesh123', role: "user"),
       );

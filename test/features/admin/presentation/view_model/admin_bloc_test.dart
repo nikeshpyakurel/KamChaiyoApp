@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kamchaiyo/core/error/failure.dart'; // Assuming you have a Failure class
+import 'package:kamchaiyo/core/error/failure.dart';
 import 'package:kamchaiyo/features/admin/domain/entity/chatbot_setting_entity.dart';
 import 'package:kamchaiyo/features/admin/domain/entity/company_entity.dart';
 import 'package:kamchaiyo/features/admin/domain/use_case/get_all_companies_usecase.dart';
@@ -59,7 +59,6 @@ void main() {
     blocTest<AdminBloc, AdminState>(
       'should emit [loading, success with new settings] on successful update',
       build: () {
-        // Arrange
         when(() => mockUpdateChatbotSettingsUseCase(tNewPrompt)).thenAnswer((_) async => Right(tNewSettings));
         return adminBloc;
       },
@@ -80,7 +79,6 @@ void main() {
     blocTest<AdminBloc, AdminState>(
       'should emit [loading, failure] on failed update',
       build: () {
-        // Arrange
         when(() => mockUpdateChatbotSettingsUseCase(tNewPrompt)).thenAnswer((_) async => Left(tFailure));
         return adminBloc;
       },

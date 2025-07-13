@@ -51,54 +51,27 @@ void main() {
   const initialIdleState = TestAuthState();
 
   group('LoginView', () {
-  // testWidgets('renders user and admin login forms correctly in tabs', (tester) async {
-  //     // Arrange: Set the initial state of the BLoC
-  //     when(() => mockAuthViewModel.state).thenReturn(initialIdleState);
-
-  //     await pumpLoginView(tester);
-  //     await tester.pumpAndSettle();
-
-  //     expect(find.text('Welcome Back!'), findsOneWidget);
-  //     expect(find.widgetWithText(TextFormField, 'Email'), findsOneWidget);
-  //     expect(find.widgetWithText(TextFormField, 'Password'), findsOneWidget);
-  //     expect(find.widgetWithText(ElevatedButton, 'Login'), findsOneWidget);
-
-  //     await tester.tap(find.text('Admin'));
-  //     await tester.pumpAndSettle();
-
-  //     expect(find.text('Admin Portal'), findsOneWidget);
-  //     expect(find.widgetWithText(TextFormField, 'Admin Email'), findsOneWidget);
-  //     expect(find.widgetWithText(TextFormField, 'Password'), findsOneWidget);
-  //     expect(find.widgetWithText(ElevatedButton, 'Login as Admin'), findsOneWidget);
-  //   });
-
 
     testWidgets('shows CircularProgressIndicator when state is loading', (tester) async {
-      // Arrange: Set state to loading
       when(() => mockAuthViewModel.state).thenReturn(const TestAuthState(isLoading: true));
 
-      // Act
       await pumpLoginView(tester);
 
-      // Assert: 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.widgetWithText(ElevatedButton, 'Login'), findsNothing);
     });
 
     
     testWidgets('shows SnackBar when state has an error', (tester) async {
-       // Arrange
       whenListen(
         mockAuthViewModel,
         Stream.fromIterable([const TestAuthState(error: 'Invalid credentials')]),
         initialState: initialIdleState,
       );
 
-      // Act
       await pumpLoginView(tester);
       await tester.pump(); 
 
-      // Assert
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text('Invalid credentials'), findsOneWidget);
     });

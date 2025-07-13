@@ -58,10 +58,8 @@ void main() {
 
   group('RegisterView', () {
     testWidgets('should render all static text and form fields correctly', (tester) async {
-      // Act
       await pumpRegisterView(tester);
 
-      // Assert
       expect(find.text('Create Account'), findsOneWidget);
       expect(find.text('I am a...'), findsOneWidget);
       expect(find.text('Job Seeker'), findsOneWidget);
@@ -77,18 +75,15 @@ void main() {
     });
 
     testWidgets('should show error SnackBar when state has an error', (tester) async {
-      // Arrange
       whenListen(
         mockAuthViewModel,
         Stream.fromIterable([const TestAuthState(error: 'Email already exists')]),
         initialState: const TestAuthState(),
       );
       
-      // Act
       await pumpRegisterView(tester);
       await tester.pump();
 
-      // Assert
       expect(find.byType(SnackBar), findsOneWidget);
       expect(find.text('Email already exists'), findsOneWidget);
     });

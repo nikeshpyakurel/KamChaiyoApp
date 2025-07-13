@@ -35,7 +35,6 @@ void main() {
       'should call [AuthRepository.register] with the correct data '
       'and return a [UserEntity] on success',
       () async {
-        // Arrange 
         when(
           () => mockAuthRepository.register(
             fullName: any(named: 'fullName'),
@@ -46,10 +45,8 @@ void main() {
           ),
         ).thenAnswer((_) async => const Right(tUserEntity));
 
-        // Act 
         final result = await signupUseCase(tSignupParams);
 
-        // Assert
         expect(result, const Right(tUserEntity));
 
         verify(
