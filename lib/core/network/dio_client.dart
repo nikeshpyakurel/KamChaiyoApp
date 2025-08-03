@@ -19,4 +19,7 @@ class DioClient {
   Future<Response> put(String path, {dynamic data}) async {
   return _dio.put(path, data: data);
   }
+
+  Future<Response> delete(String path, {dynamic data}) async =>
+      _dio.delete(path, data: data);
 }
