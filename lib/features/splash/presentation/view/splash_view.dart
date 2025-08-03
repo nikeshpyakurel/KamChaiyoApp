@@ -4,7 +4,7 @@ import 'package:kamchaiyo/features/admin/presentation/view/admin_dashboard_view.
 import 'package:kamchaiyo/features/auth/domain/entity/user_entity.dart';
 import 'package:kamchaiyo/features/auth/presentation/view/login_view.dart';
 import 'package:kamchaiyo/features/auth/presentation/view_model/auth_view_model.dart';
-import 'package:kamchaiyo/features/profile/presentation/view/profile_view.dart';
+import 'package:kamchaiyo/features/home/presentation/view/home_view.dart';
 import 'package:kamchaiyo/features/recruiter_dashboard/presentation/view/recruiter_dashboard_view.dart';
 import 'package:lottie/lottie.dart';
 
@@ -17,6 +17,8 @@ class SplashView extends StatelessWidget {
       listener: (context, state) {
         if (!state.isLoading) {
           Future.delayed(const Duration(seconds: 2), () {
+            if (!context.mounted) return;
+
             if (state.isAuthenticated && state.user != null) {
               _navigateToDashboard(context, state.user!);
             } else {
@@ -59,7 +61,7 @@ class SplashView extends StatelessWidget {
         break;
       case 'job_seeker':
       default:
-        dashboard = const ProfileView();
+        dashboard = const HomeView();
         break;
     }
     Navigator.pushAndRemoveUntil(
