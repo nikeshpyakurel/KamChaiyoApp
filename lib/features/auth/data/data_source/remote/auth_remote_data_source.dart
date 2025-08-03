@@ -8,8 +8,14 @@ import 'package:kamchaiyo/features/auth/data/dto/user_dto.dart';
 
 abstract class AuthRemoteDataSource {
   Future<LoginResponseDto> login(String email, String password, String role);
-  Future<UserDto> register({required String fullName, required String email, required String phone, required String password, required String role});
-  Future<UserDto> updateProfile({String? fullName, File? avatar, File? resume});
+  Future<UserDto> register({
+    required String fullName,
+    required String email,
+    required String phone,
+    required String password,
+    required String role,
+  });
+  Future<UserDto> updateProfile({String? fullName, File? avatar, File? resume,String? bio, List<String>? skills});
   Future<UserDto> getCurrentUser();
 }
 
@@ -18,19 +24,47 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this._dioClient);
 
   @override
-  Future<LoginResponseDto> login(String email, String password, String role) async {
+  Future<LoginResponseDto> login(
+    String email,
+    String password,
+    String role,
+  ) async {
     try {
-      final response = await _dioClient.post(ApiEndpoints.login, data: {"email": email, "password": password, "role": role});
+      final response = await _dioClient.post(
+        ApiEndpoints.login,
+        data: {"email": email, "password": password, "role": role},
+      );
       return LoginResponseDto.fromJson(response.data["data"]);
-    } on DioException catch (e) { throw ServerException(e.response?.data['message'] ?? 'Login failed.'); }
+    } on DioException catch (e) {
+      throw ServerException(e.response?.data['message'] ?? 'Login failed.');
+    }
   }
 
   @override
-  Future<UserDto> register({required String fullName, required String email, required String phone, required String password, required String role}) async {
+  Future<UserDto> register({
+    required String fullName,
+    required String email,
+    required String phone,
+    required String password,
+    required String role,
+  }) async {
     try {
-      final response = await _dioClient.post(ApiEndpoints.register, data: {"fullName": fullName, "email": email, "phoneNumber": phone, "password": password, "role": role});
+      final response = await _dioClient.post(
+        ApiEndpoints.register,
+        data: {
+          "fullName": fullName,
+          "email": email,
+          "phoneNumber": phone,
+          "password": password,
+          "role": role,
+        },
+      );
       return UserDto.fromJson(response.data["data"]);
-    } on DioException catch (e) { throw ServerException(e.response?.data['message'] ?? 'Registration failed.'); }
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['message'] ?? 'Registration failed.',
+      );
+    }
   }
 
   @override
@@ -38,15 +72,37 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       final response = await _dioClient.get(ApiEndpoints.currentUser);
       return UserDto.fromJson(response.data["data"]);
-    } on DioException catch (e) { throw ServerException(e.response?.data['message'] ?? 'Failed to fetch user.'); }
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['message'] ?? 'Failed to fetch user.',
+      );
+    }
   }
-  
+
   @override
-  Future<UserDto> updateProfile({String? fullName, File? avatar, File? resume}) async {
+  Future<UserDto> updateProfile({
+    String? fullName,
+    File? avatar,
+    File? resume,
+    String? bio, List<String>? skills
+  }) async {
     try {
-      final formData = FormData.fromMap({ if (fullName != null) 'fullName': fullName, if (avatar != null) 'avatar': await MultipartFile.fromFile(avatar.path), if (resume != null) 'resume': await MultipartFile.fromFile(resume.path) });
-      final response = await _dioClient.patch(ApiEndpoints.updateProfile, data: formData);
+      final formData = FormData.fromMap({
+        if (fullName != null) 'fullName': fullName,
+        if (avatar != null) 'avatar': await MultipartFile.fromFile(avatar.path),
+        if (resume != null) 'resume': await MultipartFile.fromFile(resume.path),
+        if (bio != null) 'bio': bio, // New
+        if (skills != null) 'skills': skills.join(','), // New
+      });
+      final response = await _dioClient.patch(
+        ApiEndpoints.updateProfile,
+        data: formData,
+      );
       return UserDto.fromJson(response.data["data"]);
-    } on DioException catch (e) { throw ServerException(e.response?.data['message'] ?? 'Profile update failed.'); }
+    } on DioException catch (e) {
+      throw ServerException(
+        e.response?.data['message'] ?? 'Profile update failed.',
+      );
+    }
   }
 }

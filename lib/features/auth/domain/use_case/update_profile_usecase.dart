@@ -10,14 +10,25 @@ class UpdateProfileUseCase implements UseCase<UserEntity, UpdateProfileParams> {
   final AuthRepository _repository;
   UpdateProfileUseCase(this._repository);
   @override
-  Future<Either<Failure, UserEntity>> call(UpdateProfileParams params) async => await _repository.updateProfile(fullName: params.fullName, avatar: params.avatar, resume: params.resume);
+  Future<Either<Failure, UserEntity>> call(UpdateProfileParams params) async =>
+      await _repository.updateProfile(
+        fullName: params.fullName,
+        avatar: params.avatar,
+        resume: params.resume,
+        bio: params.bio, 
+        skills: params.skills,
+      );
 }
 
 class UpdateProfileParams extends Equatable {
   final String? fullName;
   final File? avatar;
   final File? resume;
-  const UpdateProfileParams({this.fullName, this.avatar, this.resume});
+  final String? bio;      
+  final List<String>? skills;
+  const UpdateProfileParams({this.fullName, this.avatar, this.resume, this.bio,
+    this.skills,});
+  
   @override
-  List<Object?> get props => [fullName, avatar, resume];
+  List<Object?> get props => [fullName, avatar, resume,bio, skills];
 }
