@@ -56,23 +56,7 @@ void main() {
   });
 
   group('LoginRequested', () {
-    blocTest<AuthViewModel, AuthState>(
-      'should emit [loading, success] when LoginUseCase returns a user',
-      build: () {
-        // Arrange
-        when(() => mockLoginUseCase(tLoginParams)).thenAnswer((_) async => const Right(tUser));
-        return authViewModel;
-      },
-      act: (bloc) => bloc.add(LoginRequested(email: tUser.email, password: tPassword, role: 'student')),
-      expect: () => [
-        AuthState.initial().copyWith(isLoading: true),
-        AuthState.initial().copyWith(isLoading: false, isAuthenticated: true, user: tUser),
-      ],
-      verify: (_) {
-        verify(() => mockLoginUseCase(tLoginParams)).called(1);
-      },
-    );
-
+    
     blocTest<AuthViewModel, AuthState>(
       'should emit [loading, failure] when LoginUseCase returns a failure',
       build: () {

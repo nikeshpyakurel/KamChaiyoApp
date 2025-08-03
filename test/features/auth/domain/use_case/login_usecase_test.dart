@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kamchaiyo/features/auth/domain/entity/user_entity.dart'; // Assuming UserEntity is in this path
+import 'package:kamchaiyo/features/auth/domain/entity/user_entity.dart'; 
 import 'package:kamchaiyo/features/auth/domain/use_case/login_usecase.dart';
 import 'package:mocktail/mocktail.dart';
 
